@@ -72,7 +72,7 @@ public final class DiaxBot implements ComponentProvider, Module {
             JDA jda = null;
             try {
                 JDABuilder builder = new JDABuilder(AccountType.BOT)
-                        .addListener(injector.getInstance(DiaxCommandHandler.class), new DiaxDisconnectListener())
+                        .addEventListener(injector.getInstance(DiaxCommandHandler.class), new DiaxDisconnectListener())
                         .setAudioEnabled(true)
                         .setGame(Game.of(properties.getGame()))
                         .setToken(properties.getToken())
@@ -116,7 +116,7 @@ public final class DiaxBot implements ComponentProvider, Module {
     }
 
     @Override
-    public <T> T getInstance(Class<T> type) {
+    public <E> E getInstance(Class<E> type) {
         return injector.getInstance(type);
     }
 }
